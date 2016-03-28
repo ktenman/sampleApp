@@ -1,2 +1,2 @@
 # sampleApp
-node.js Hello Worl
+node.js Hello World
