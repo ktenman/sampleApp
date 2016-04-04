@@ -16,7 +16,7 @@ mongoose.connect(config.db);
 
 var topics = require('./routes/topics');
 
-///after app declaration
+// after app declaration
 app.use('/api/topics', topics);
 
 
