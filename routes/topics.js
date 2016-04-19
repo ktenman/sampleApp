@@ -22,10 +22,10 @@ router.post('/', function(req, res, next) {
 
     console.log(postData);
 
-    if(postData.topicName){
+    if(postData.name){
 
         var topicObject = {
-            name: postData.topicName
+            name: postData.name
         };
 
         var newTopic = new Topic(topicObject);
@@ -84,11 +84,11 @@ router.put('/:id', function(req, res, next) {
     var params = req.params;
     var postData = req.body;
 
-    //id in the URL & post data topicName
-    if(params.id && postData.topicName){
+    //id in the URL & post data topic's name
+    if(params.id && postData.name){
 
         var conditions = {_id: params.id};
-        var update = {name: postData.topicName};
+        var update = {name: postData.name};
         var options = {new: true};
 
         var query = Topic.findOneAndUpdate(conditions, update, options);
@@ -124,7 +124,7 @@ router.delete('/:id', function(req, res, next) {
         query.exec(function(err, topic) {
             if(err){
                 console.error(err);
-                return res.json({"error":"did not find any matching topic or wrong data to update"});
+                return res.status(500).json({"error":"did not find any matching topic or wrong data to update"});
             }
             res.json(topic);
         });

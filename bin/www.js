@@ -1,0 +1,16 @@
+var app = require('../app');
+var config = require('../config');
+var mongoose = require('mongoose');
+
+mongoose.connect(config.db);
+
+var server = app.listen(config.port, function() {
+  console.log('App started on port ' + config.port + '!');
+});
+
+server.on('close', function() {
+  console.log('stopping app...');
+  mongoose.connection.close();
+});
+
+module.exports = server;
